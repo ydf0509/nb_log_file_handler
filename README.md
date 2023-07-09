@@ -121,7 +121,7 @@ if __name__ == '__main__':
 
 concurrent_log_handler这个包在windows上性能无法忍受，10进程写入10000次需要263秒，性能惨不忍睹。这个包在linux上性能还可以接受。
 
-## 4、 nb_log_file_handler.NbLogFileHandler 按散件和大小多进程安全切割，性能远远的暴击 concurrent_log_handler
+## 4、 nb_log_file_handler.NbLogFileHandler 按时间和大小多进程安全切割，性能远远的暴击 concurrent_log_handler
 
 ```python
 
