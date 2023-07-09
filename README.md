@@ -15,7 +15,7 @@ pip install nb_log_file_handler
 nb_log_file_handler 在win上采用每隔0.1秒批量写入文件，atexit钩子对程序即将结束后的剩余待写入的消息写到文件中。
 linux的文件io性能本身比较好，加上fork 子进程不支持 atexit 触发执行，所以linux上使用单个消息就写入。
 
-nb_log_file_handler 性能远超 concurrent_log_handler.ConcurrentRotatingFileHandler
+nb_log_file_handler 性能远超 concurrent_log_handler.ConcurrentRotatingFileHandler 100倍。
 
 ## 1、nb_log_file_handler使用方式：
 
@@ -168,4 +168,4 @@ if __name__ == '__main__':
     print(time.time()-t1)
 ```
 
-nb_log_file_handler.NbLogFileHandler 10进程写入10000次只需要1.3秒，nb_log_file_handler 性能远远的暴击三方包 concurrent_log_handler
+nb_log_file_handler.NbLogFileHandler 10进程写入10000次只需要1.3秒，nb_log_file_handler 性能远远的暴击三方包 concurrent_log_handler 100倍。

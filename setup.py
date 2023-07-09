@@ -17,7 +17,7 @@ install_requires = [
 
 setup(
     name='nb_log_file_handler',  #
-    version="0.1",
+    version="0.2",
     description=(
         'multi process safe log file handler,both time and size rotate，benchmark fast than concurrent_log_handler 100 times'
     ),
@@ -54,7 +54,7 @@ python setup.py sdist upload -r pypi
 
 
 
-python setup.py sdist & python -m  twine upload dist/nb_log_file_handler-0.1.tar.gz
+python setup.py sdist && python -m  twine upload dist/nb_log_file_handler-0.2.tar.gz
 
 twine upload dist/*
 
