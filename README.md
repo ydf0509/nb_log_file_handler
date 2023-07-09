@@ -3,12 +3,19 @@
 multi process safe log file handler,both time and size rotate，benchmark fast than concurrent_log_handler 100 times
 
 
-nb_log_file_handler 是多进程安全切割，同时按时间和大小切割的FileHandler
+nb_log_file_handler 是多进程安全切割，同时按时间和大小切割的FileHandler,性能远超 concurrent_log_handler.ConcurrentRotatingFileHandler
 
 
 ## 安装
 
 pip install nb_log_file_handler
+
+## nb_log_file_handler 实现原理，
+
+nb_log_file_handler 在win上采用每隔0.1秒批量写入文件，atexit钩子对程序即将结束后的剩余待写入的消息写到文件中。
+linux的文件io性能本身比较好，加上fork 子进程不支持 atexit 触发执行，所以linux上使用单个消息就写入。
+
+nb_log_file_handler 性能远超 concurrent_log_handler.ConcurrentRotatingFileHandler
 
 ## 1、nb_log_file_handler使用方式：
 
@@ -87,7 +94,7 @@ PermissionError: [WinError 32] 另一个程序正在使用此文件，进程无�
 
 ### 2.2、对比小有名气的多进程切割安全的三方包 concurrent_log_handler
 
-from concurrent_log_handler import ConcurrentRotatingFileHandler
+concurrent_log_handler.ConcurrentRotatingFileHandler
 
 ```python
 
